@@ -1,6 +1,8 @@
 package com.example.bikeshareapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +14,11 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var stationRecyclerView: RecyclerView
+    private lateinit var favoritesButton : Button
+    companion object {
+        var allStations: List<CombinedStation> = emptyList()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +33,13 @@ class MainActivity : AppCompatActivity() {
 
         stationRecyclerView = findViewById(R.id.stationRecyclerView)
         stationRecyclerView.layoutManager = LinearLayoutManager(this)
+        favoritesButton = findViewById(R.id.favoriteScreenButton)
 
+        favoritesButton.setOnClickListener{
+            val intent = Intent(this, favorites::class.java)
+            startActivity(intent)
+
+        }
         lifecycleScope.launch {
             try {
                 val infoResponse = ApiClient.api.getStationInfo()
@@ -36,17 +49,20 @@ class MainActivity : AppCompatActivity() {
                     val stationInfos = infoResponse.body()?.data?.stations ?: emptyList()
                     val stationStatuses = statusResponse.body()?.data?.stations ?: emptyList()
 
-                    val mergedStations = stationInfos.mapNotNull { info ->
-                        val status = stationStatuses.find { it.station_id == info.station_id }
-                        status?.let {
-                            CombinedStation(
+                    val mergedStations = mutableListOf<CombinedStation>()
+                    for (info in stationInfos){
+                        val validID = stationStatuses.find { it.station_id == info.station_id }
+                        if (validID != null){
+                            val combined = CombinedStation(
                                 name = info.name,
-                                bikes = it.num_bikes_available,
-                                docks = it.num_docks_available
+                                bikes = validID.num_bikes_available,
+                                docks = validID.num_docks_available
                             )
+                            mergedStations.add(combined)
                         }
                     }
 
+                    allStations = mergedStations
                     stationRecyclerView.adapter = CombinedStationAdapter(mergedStations)
 
                 }

@@ -1,4 +1,4 @@
-<LinearLayout
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
         android:padding="16dp"
-        android:text="Nearby Stations"
+        android:text="@string/nearby_stations"
         android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -21,4 +21,11 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:listitem="@layout/station_item" />
+
+    <Button
+        android:id="@+id/favoriteScreenButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/favorites"
+        app:cornerRadius="0dp" />
 </LinearLayout>
