@@ -16,22 +16,34 @@
 
         <TextView
             android:id="@+id/stationName"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Station Name"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/bikesAvailable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Bikes"
             android:textColor="#4CAF50" />
 
         <TextView
             android:id="@+id/docksAvailable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Docks (empty)"
             android:textColor="#2196F3" />
+
+        <ImageButton
+            android:id="@+id/favoriteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Favorite"
+            android:src="@android:drawable/btn_star_big_off" />
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
