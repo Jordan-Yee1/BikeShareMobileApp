@@ -18,7 +18,7 @@
             android:id="@+id/stationName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Station Name"
+            android:text="@string/station_name"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -26,14 +26,14 @@
             android:id="@+id/bikesAvailable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bikes"
+            android:text="@string/bikes"
             android:textColor="#4CAF50" />
 
         <TextView
             android:id="@+id/docksAvailable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Docks (empty)"
+            android:text="@string/docks_empty"
             android:textColor="#2196F3" />
 
         <ImageButton
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Favorite"
+            android:contentDescription="@string/favorite"
             android:src="@android:drawable/btn_star_big_off" />
 
     </LinearLayout>

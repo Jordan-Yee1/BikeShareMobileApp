@@ -1,6 +1,8 @@
 package com.example.bikeshareapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +23,7 @@ class favorites : AppCompatActivity() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private val favoriteStations = mutableListOf<CombinedStation>()
+    private lateinit var backButton: Button
     val fullStationList = MainActivity.allStations
 
 
@@ -37,6 +40,13 @@ class favorites : AppCompatActivity() {
 
         recyclerView = findViewById<RecyclerView>(R.id.favoritesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        backButton = findViewById(R.id.Back2Stations)
+
+        backButton.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
+        }
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         dbRef = FirebaseDatabase.getInstance().reference.child("favorites").child(userId)
@@ -45,8 +55,8 @@ class favorites : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 favoriteStations.clear()
 
-                for (favSnap in snapshot.children) {
-                    val stationName = favSnap.key ?: continue
+                for (snap in snapshot.children) {
+                    val stationName = snap.key ?: continue
 
                     val matched = fullStationList.find { it.name == stationName }
                     if (matched != null) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BikeShareApp</string>
+    <string name="favorite_stations">Estaciones favoritas</string>
+    <string name="all_stations">Todas las estaciones</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="sign_up_here">Regístrate aquí</string>
+    <string name="nearby_stations">Estaciones cercanas</string>
+    <string name="favorites">Favoritos</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="station_name">Nombre de la estación</string>
+    <string name="bikes">Bicicletas</string>
+    <string name="docks_empty">Anclajes (vacíos)</string>
+    <string name="favorite">Favorito</string>
+</resources>
+

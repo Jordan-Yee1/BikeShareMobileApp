@@ -37,7 +37,7 @@ class CombinedStationAdapter(private val stationList: List<CombinedStation>) :
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val dbRef = FirebaseDatabase.getInstance().reference
-        val stationKey = station.name //using name as ID
+        val stationKey = fixKey(station.name) //using name as ID
         val favoriteRef = dbRef.child("favorites").child(userId).child(stationKey)
 
         favoriteRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -70,6 +70,16 @@ class CombinedStationAdapter(private val stationList: List<CombinedStation>) :
 
     //Get num station size
     override fun getItemCount(): Int = stationList.size
+
+    fun fixKey(input: String): String {
+        return input
+            .replace(".", ",")  // or "-"
+            .replace("#", "")
+            .replace("$", "")
+            .replace("[", "")
+            .replace("]", "")
+            .replace("/", "-") // also a problem
+    }
 
 
 

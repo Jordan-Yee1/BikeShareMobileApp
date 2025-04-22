@@ -49,14 +49,16 @@ class MainActivity : AppCompatActivity() {
                     val stationInfos = infoResponse.body()?.data?.stations ?: emptyList()
                     val stationStatuses = statusResponse.body()?.data?.stations ?: emptyList()
 
-                    val mergedStations = stationInfos.mapNotNull { info ->
-                        val status = stationStatuses.find { it.station_id == info.station_id }
-                        status?.let {
-                            CombinedStation(
+                    val mergedStations = mutableListOf<CombinedStation>()
+                    for (info in stationInfos){
+                        val validID = stationStatuses.find { it.station_id == info.station_id }
+                        if (validID != null){
+                            val combined = CombinedStation(
                                 name = info.name,
-                                bikes = it.num_bikes_available,
-                                docks = it.num_docks_available
+                                bikes = validID.num_bikes_available,
+                                docks = validID.num_docks_available
                             )
+                            mergedStations.add(combined)
                         }
                     }
 

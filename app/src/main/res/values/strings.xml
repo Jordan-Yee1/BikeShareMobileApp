@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">BikeShareApp</string>
+    <string name="favorite_stations">Favorite Stations</string>
+    <string name="all_stations">All Stations</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_up_here">Sign up here</string>
+    <string name="nearby_stations">Nearby Stations</string>
+    <string name="favorites">Favorites</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="station_name">Station Name</string>
+    <string name="bikes">Bikes</string>
+    <string name="docks_empty">Docks (empty)</string>
+    <string name="favorite">Favorite</string>
 </resources>
